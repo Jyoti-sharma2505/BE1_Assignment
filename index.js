@@ -7,7 +7,7 @@ initilizationDatabase()
 const jsonData = fs.readFileSync("cars.json","utf-8");
 const carData = JSON.parse(jsonData);
 
-function seedData(){
+async function seedData(){
     try{
         for(const car of carData){
         const newCar= new Cars({
@@ -26,7 +26,7 @@ function seedData(){
             photos:car.photos,
             inMarket:car.inMarket
         })
-       newCar.save()
+       await newCar.save()
     }
     
    } catch(error){
